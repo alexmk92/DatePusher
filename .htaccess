@@ -1,0 +1,12 @@
+#--- Force www:
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^alexsims.me [NC]
+RewriteRule ^(.*)$ http://www.alexsims.me/$1 [L,R=301,NC]
+
+#--- Rewrite PHP files clean URL
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^([A-Za-z0-9-]+)$ ?page=$1 [NC,L]
+RewriteRule ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)$ ?page=$1&id=$2 [NC,L]
+
+#--- Http Redirects
+ErrorDocument 404 ./app/http_responses/404.php
