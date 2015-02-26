@@ -48,17 +48,6 @@ defined('CSS_DIR') or define('CSS_DIR', BASE_PATH."/public/css/");
 defined('IMG_DIR') or define('IMG_DIR', BASE_PATH."/public/img/");
 defined('LIB_DIR') or define('LIB_DIR', BASE_PATH."/public/lib/");
 
-/*
-|--------------------------------------------------------------------------
-| Include the loader
-|--------------------------------------------------------------------------
-|
-| The loader establishes the connection to the database and renders the
-| navigation menu to the top of the screen
-|
-*/
-
-require_once(CORE_PATH . "load.php");
 
 /*
 |--------------------------------------------------------------------------
