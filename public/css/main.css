@@ -48,6 +48,10 @@ html, body {
     margin: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 /*
 |---------------------------------------------------------------
 | Main Window Styles
@@ -187,9 +191,32 @@ p.help {
     background: #1e1e1e;
 }
 
-.hidden {
-    display: none;
+.delete {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    float:right;
+    display: inline-block;
+    background: #d82c2d;
+    border-radius: 25px;
+    z-indeX: 2;
+    margin-top: 25px;
+    margin-right: 15px;
 }
+
+.delete p:hover {
+    cursor: pointer;
+}
+
+.delete p {
+    font-size: 0.9em !important;
+    font-weight: bold;
+    margin-top: 4px;
+    color:#fff;
+    margin-left: 5.5px;
+}
+
+
 
 /*
 |---------------------------------------------------------------
@@ -243,5 +270,10 @@ p.help {
     .userCard {
         width: 100%;
         display: block;
+    }
+
+    #aliveStats {
+        margin-top: 170px;
+        font-size: 1.5em;
     }
 }

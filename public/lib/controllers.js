@@ -126,7 +126,7 @@ angular.module("DatePusher", ['ngRoute'])
         timeAlive -= daysAlive * 86400;
 
         // The remainder out of a day to get hours
-        var hoursAlive = Math.floor((timeAlive / 60) % 24);
+        var hoursAlive = Math.floor((timeAlive / (60 * 60)) % 24);
 
         // Set the output string for each field
         var days  = daysAlive  != 1 ? "days"  : "day";
@@ -183,10 +183,28 @@ angular.module("DatePusher", ['ngRoute'])
                 var alive = $scope.getTimeAlive(data[i].dob, false);
                 var name  = data[i].name;
 
-                res[i] =  { "name": name, "dob": alive, "dateString": data[i].dob } ;
+                res[i] =  { "name": name, "dob": alive, "dateString": data[i].dob, "timeId": data[i].timeId } ;
             }
 
             $scope.requests = res;
+        });
+        // Error callback from server - internal error of some sort (normally 404)
+        callback.error(function() {
+            alert("Error: Could not connect to the MySQL client, please try again.");
+        });
+    };
+
+    $scope.deletePost = function(request) {
+
+        // Script to be called based upon current info set, then clear the current requests array
+        $scope.url = './app/core/commands/deletePost.php';
+
+        // Create POST request to the file in the url, send it to PHP in JSON format
+        var callback = $http.post($scope.url, request.timeId);
+
+        // Success callback from server - refresh the view
+        callback.success(function() {
+            $scope.getPosts();
         });
         // Error callback from server - internal error of some sort (normally 404)
         callback.error(function() {
@@ -211,6 +229,14 @@ angular.module("DatePusher", ['ngRoute'])
         }, (10000));
     };
 
+    /*
+     |--------------------------------------------------------------------------
+     | Set Display
+     |--------------------------------------------------------------------------
+     |
+     | Sets the name, dob and output message for the current user
+     |
+     */
     $scope.setDisplay = function(request) {
         $scope.userName = request.name;
 
