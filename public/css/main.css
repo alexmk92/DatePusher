@@ -43,6 +43,83 @@ html, body {
     -webkit-font-smoothing: antialiased;
     -moz-osx--font-smoothing: greyscale;
     width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+/*
+|---------------------------------------------------------------
+| Main Window Styles
+|---------------------------------------------------------------
+|
+| Styles for the main window and all of its children
+|
+*/
+
+#mainWrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: url(../img/timeBg.png) no-repeat;
+    background-size: cover;
+}
+
+#mainForm {
+    display: inline-table;
+    position: relative;
+    width: 79%;
+    height: 100%;
+    float:right;
+    background: rgba(0,0,0,0.7);
+
+}
+
+#centerPanel {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#centerPanel form {
+    width: 550px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+form input {
+    width: 100%;
+    height: 40px;
+    font-size: 1.5em;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+p.help {
+    color: #fff;
+    font-size: 1.9em;
+}
+
+.fetchBtn {
+    width: 30%;
+    height: 40px;
+    font-size: 1em;
+    color: #fff;
+    background: #4485db;
+    border: 1px solid #56a7db;
+}
+
+.fetchBtn:hover {
+    background: #4580db;
+    border: 1px solid #56a7db;
+}
+
+#aliveStats {
+    color: #ffffff;
+    font-size: 2em;
+    width: 550px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 /*
@@ -54,10 +131,117 @@ html, body {
 |
 */
 
-aside #previousFeed
+#previousFeed
 {
-    max-width: 400px;
-    width: 100%;
-    float:right;
+    background: #1a1a1a;
+    display: inline-block;
+    min-width: 350px;
+    width: 21%;
+    float:left;
+    position: fixed;
+    height: 100%;
+    border-right: 1px solid #1f1f1f;
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.userCard {
+    height: 100px;
+    position: relative;
+    border-bottom: 1px solid #1f1f1f;
+}
+
+.userCard .textWrap {
+    display: inline-block;
+    padding-left: 25px;
+    padding-right: 5px;
+    margin-top: 25px;
+}
+
+.textWrap p:nth-child(1) {
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.textWrap p:nth-child(2) {
+    font-size: 1.1em;
+    color: #56a7db;
+}
+
+.textWrap p {
+    padding: 0px;
+    margin: 0px;
+}
+
+.userCard .accessory {
+    height: 100%;
+    width: 5px;
+    background: #56a7db;;
     position: absolute;
+}
+
+.userCard:hover {
+    background: #1e1e1e;
+}
+
+.hidden {
+    display: none;
+}
+
+/*
+|---------------------------------------------------------------
+| Media Queries
+|---------------------------------------------------------------
+|
+| Styles for the sidebar, including the cards
+|
+*/
+
+@media(max-width: 1100px) {
+    #previousFeed {
+        height: auto;
+        width: 100%;
+        position: relative;
+        bottom: 0;
+    }
+
+    #mainForm {
+        width: 100%;
+        height: 500px;
+        position: relative;
+    }
+
+    #aliveStats {
+        margin-top: 120px;
+        width: 85%;
+    }
+
+    #centerPanel form {
+        height: 200px;
+        width: 85%;
+    }
+
+    form input {
+        width: 95%;
+    }
+
+    .userCard {
+        width: 50%;
+        display: inline-block;
+    }
+}
+
+@media(max-width: 650px) {
+
+    #centerPanel  {
+        display: block;
+    }
+
+    .userCard {
+        width: 100%;
+        display: block;
+    }
 }

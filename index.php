@@ -71,14 +71,14 @@ if(isset($_GET['page'])) {
     if(file_exists(VIEW_PATH.$view.".php")) {
         require_once(VIEW_PATH.$view.".php");
     } else {
-        require_once(VIEW_PATH."home.php");
+        header("Status: 404 Not Found");
+        header('HTTP/1.0 404 Not Found');
+        require_once(CORE_PATH . "http_responses/404.php");
     }
 
 } else {
     // This should only happen when a bogus URL is requested
-    header("Status: 404 Not Found");
-    header('HTTP/1.0 404 Not Found');
-    require_once(CORE_PATH . "http_responses/404.php");
+    require_once(VIEW_PATH."home.php");
 }
 
 require_once(VIEW_PATH . "components/footer.php");

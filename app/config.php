@@ -1,7 +1,7 @@
 <?php
 /*
 |--------------------------------------------------------------------------
-| Configuartion constants
+| Configuration constants
 |--------------------------------------------------------------------------
 |
 | Any constants should be defined here, i.e. DB_HOST, DB_PASS, DB_USER 

@@ -7,7 +7,8 @@ angular.module("DatePusher", ['ngRoute'])
  | Fetch Controller
  |--------------------------------------------------------------------------
  |
- | Return the users total time alive
+ | Main controller for this app, handles all communication with PHP files to
+ | transact with the server.
  |
  | @param $scope - Passed by Angular, contains set values including the DoB
  |                 and name that the user sent.
@@ -23,10 +24,24 @@ angular.module("DatePusher", ['ngRoute'])
 
     // Initialise the app
     $scope.init = function() {
-        $scope.getPosts();
+        $scope.longPoll();
     };
 
-    // Function is executed when the user clicks the fetch button
+    /*
+     |--------------------------------------------------------------------------
+     | New Result
+     |--------------------------------------------------------------------------
+     |
+     | Triggered when a click event is fired from the client, this function
+     | will sanitise the userName and userDob parameters sent in the $scope before
+     | sending them to the server to INSERT the new record.
+     |
+     | @callback success : Fire a call to $scope.getPosts(); to update the list
+     |                     of results
+     | @callback error   : Prompts to the user that we couldn't connect to MySQL
+     |                     the record was not INSERTED, but user can see updates
+     |
+     */
     $scope.newResult = function() {
 
         // Catch the inputs and format them
@@ -39,31 +54,59 @@ angular.module("DatePusher", ['ngRoute'])
             // Script to be called based upon current info set
             $scope.url = './app/core/commands/processDate.php';
 
-            // Set the amount of time the person has been alive
-            $scope.getTimeAlive(userDob, true);
+            // Set the amount of time the person has been alive, catch the Boolean return value,
+            // an age greather than 110 is anticipated as invalid
+            var isValidAge = $scope.getTimeAlive(userDob, true);
 
-            // Format the string before sending to server for processing
-            userName.trim();
+            // If the user provided a valid age, then update the system
+            if(isValidAge)
+            {
+                // Format the string before sending to server for processing
+                userName.trim();
 
-            // Create POST request to the file in the url, send it to PHP in JSON format
-            var callback = $http.post($scope.url, {
-                                                      "name"  : userName,
-                                                      "dob"   : userDob
-                                                  }
-                                     );
-            // Success callback from server - returns the data from PHP file and the HTTP status
-            callback.success(function() {
-                $scope.getPosts();
-            });
-            // Error callback from server - internal error of some sort (normally 404)
-            callback.error(function() {
+                // Create POST request to the file in the url, send it to PHP in JSON format
+                var callback = $http.post($scope.url, {
+                        "name": userName,
+                        "dob": userDob
+                    }
+                );
+                // Success callback from server - returns the data from PHP file and the HTTP status
+                callback.success(function () {
+                    $scope.getPosts();
+                });
+                // Error callback from server - internal error of some sort (normally 404)
+                callback.error(function () {
                     alert("Error: Could not connect to the MySQL client, please try again.");
-            });
+                });
+            }
+        } else {
+            $scope.timeAlive = "Hey, you forgot to enter information into the Name and Date fields, fill those out and try again.";
         }
     };
 
-    // Return the time alive based on a given timestamp
-    $scope.getTimeAlive = function(userDob, shortString) {
+    /*
+     |--------------------------------------------------------------------------
+     | Get Time Alive
+     |--------------------------------------------------------------------------
+     |
+     | Returns one of two formatted strings dependent on the users date of birth.
+     | when called, this method will create a new date object from the provided
+     | string, and then calculate the time difference between the two dates.
+     |
+     | @param userDob     : The users date of birth, either a string or date, both
+     |                     are valid as a date can be reimplemented with new Date()
+     |
+     | @param longString  : (BOOL) - determines whether the full string or short
+     |                      string should be returned, a short string is used for
+     |                      cards which are rendered to the front end, whereas a
+     |                      long string is used for the main prompt message
+     |
+     | @return Bool       : True if the age is valid, false if age is too large
+     |
+     | @return String     : Short formatted string for shortString requests
+     |
+     */
+    $scope.getTimeAlive = function(userDob, longString) {
 
         // Get todays date
         var today = new Date();
@@ -83,7 +126,7 @@ angular.module("DatePusher", ['ngRoute'])
         timeAlive -= daysAlive * 86400;
 
         // The remainder out of a day to get hours
-        var hoursAlive = Math.floor(timeAlive % 24);
+        var hoursAlive = Math.floor((timeAlive / 60) % 24);
 
         // Set the output string for each field
         var days  = daysAlive  != 1 ? "days"  : "day";
@@ -91,8 +134,15 @@ angular.module("DatePusher", ['ngRoute'])
         var hours = hoursAlive != 1 ? "hours" : "hour";
 
         // Update the DOM
-        if(shortString === true)
-            $scope.timeAlive = "Wow, you have been alive for " + yearsAlive + " " + years + ", " + daysAlive + " " + days + " and " + hoursAlive + " " + hours + "!";
+        if(longString === true) {
+            if (yearsAlive < 110) {
+                $scope.timeAlive = "Wow, you have been alive for " + yearsAlive + " " + years + ", " + daysAlive + " " + days + " and " + hoursAlive + " " + hours + "!";
+                return true;
+            } else {
+                $scope.timeAlive = "You're " + yearsAlive + " " + years + " old? I think somebody is telling porkies! How about you try again :)";
+                return false;
+            }
+        }
         // Output string for the render cards
         else {
             timeAlive = yearsAlive + " " + years + ", " + daysAlive + " " + days + " and " + hoursAlive + " " + hours + " old!";
@@ -100,8 +150,20 @@ angular.module("DatePusher", ['ngRoute'])
         }
     };
 
-
-    // Gets all previous results
+    /*
+     |--------------------------------------------------------------------------
+     | Get Posts
+     |--------------------------------------------------------------------------
+     |
+     | Returns all of the latest results back from the server, receives a JSON
+     | object from getPosts.php on a successful callback
+     |
+     | @callback success : Update the page with the previous result
+     |
+     | @callback error   : Prompts to the user that we couldn't connect to MySQL
+     |                     the record was not INSERTED, but user can see updates
+     |
+     */
     $scope.getPosts = function() {
 
         // Script to be called based upon current info set, then clear the current requests array
@@ -121,7 +183,7 @@ angular.module("DatePusher", ['ngRoute'])
                 var alive = $scope.getTimeAlive(data[i].dob, false);
                 var name  = data[i].name;
 
-                res[i] =  { "name": name, "dob": alive } ;
+                res[i] =  { "name": name, "dob": alive, "dateString": data[i].dob } ;
             }
 
             $scope.requests = res;
@@ -130,6 +192,39 @@ angular.module("DatePusher", ['ngRoute'])
         callback.error(function() {
             alert("Error: Could not connect to the MySQL client, please try again.");
         });
+    };
+
+    /*
+     |--------------------------------------------------------------------------
+     | Long Poll
+     |--------------------------------------------------------------------------
+     |
+     | Refreshes the feed every 10 seconds, this shows when new users add who
+     | are not on the host PC add their values - works by recursively calling
+     | itself every x seconds.
+     |
+     */
+    $scope.longPoll = function() {
+        $scope.getPosts();
+        setTimeout(function() {
+            $scope.longPoll();
+        }, (10000));
+    };
+
+    $scope.setDisplay = function(request) {
+        $scope.userName = request.name;
+
+        // Build the datepicker date
+        var d = new Date(request.dateString);
+        var date = d.toISOString().substring(0,10);
+
+        // Set the date picker value
+        var datePicker = document.querySelector('#dob');
+        datePicker.value = date;
+
+        // Update the GUI
+        $scope.getTimeAlive(d, true);
+
     };
 
 });

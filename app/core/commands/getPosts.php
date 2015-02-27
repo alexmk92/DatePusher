@@ -7,10 +7,7 @@ $DB = Database::getInstance();
 
 
 // Once INSERT has finished, return the top 50 results, get all but the latest row
-$statement = "SELECT username, dob FROM aliveTimes
-              WHERE time_id < (SELECT MAX(time_id) FROM aliveTimes)
-              ORDER BY time_id DESC
-              LIMIT 50";
+$statement = "SELECT username, dob FROM aliveTimes ORDER BY time_id DESC LIMIT 50";
 
 try {
 
