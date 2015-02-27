@@ -1,5 +1,5 @@
 
-<section id="mainForm" ng-controller="FetchUserCtrl">
+<section id="mainForm">
 
     <form>
         <p class="help">Ever wondered how old you are? Just enter your name and Date of Birth below!</p>
@@ -10,13 +10,14 @@
         <button type="button" class="fetchBtn" ng-click="newResult()">Get Results</button>
     </form>
 
+    <div id="aliveStats" ng-model="timeAlive">
+        <p>{{ timeAlive }}</p>
+    </div>
+
 </section>
 
-<aside id="previousFeed" ng-controller="FetchUserCtrl">
-    <table>
-        <tr ng-repeat="request in requests">
-            <td>{{ request.name + ", " + request.dob }}</td>
-            <td>{{ "Time alive: " + request.alive }}</td>
-        </tr>
-    </table>
+<aside id="previousFeed">
+    <div class="oldEntry" ng-repeat="request in requests">
+        <p>{{request.name + " " + request.dob}}</p>
+    </div>
 </aside>

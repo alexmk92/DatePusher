@@ -16,4 +16,10 @@
 
 </head>
 
-<body ng-app="DatePusher">
+<!--
+    Define the name of the app here and set the main controller, all child nodes
+    of body will use FetchUserCtrl until a new controller is specified.
+
+    data-ng-init: Will call the init function of FetchUserCtrl to initialise the side bar
+-->
+<body ng-app="DatePusher" ng-controller="FetchUserCtrl" data-ng-init="init()">

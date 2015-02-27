@@ -1,0 +1,63 @@
+/*
+|---------------------------------------------------------------
+| Custom Fonts
+|---------------------------------------------------------------
+|
+| Declares any custom font faces to be used within the application,
+| references the public font directory within the app - because
+| these fonts are local to the system we reduce bandwidth (don't have
+| to process external http call to other server)
+|
+*/
+
+@font-face { font-family: ProximaLight;    src: url(../fonts/ProximaNova-Light.otf); }
+@font-face { font-family: ProximaRegular;  src: url(../fonts/ProximaNova-Regular.otf); }
+@font-face { font-family: ProximaSemibold; src: url(../fonts/ProximaNova-Semibold.otf); }
+@font-face { font-family: ProximaBold;     src: url(../fonts/ProximaNova-Bold.otf); }
+
+@font-face { font-family: HelveticaLight;  src: url(../fonts/HelveticaNeueLTStd-Lt.otf); }
+@font-face { font-family: HelveticaMedium; src: url(../fonts/HelveticaNeueLTStd-Md.otf); }
+@font-face { font-family: HelveticaThin;   src: url(../fonts/HelveticaNeueLTStd-Th.otf); }
+
+@font-face { font-family: LatoBold;  src: url(../fonts/Lato-Bold.ttf) format('truetype'); }
+@font-face { font-family: LatoReg;   src: url(../fonts/Lato-Regular.ttf) format('truetype'); }
+@font-face { font-family: LatoLight; src: url(../fonts/Lato-Light.ttf) format('truetype'); }
+@font-face { font-family: LatoThin; src: url(../fonts/Lato-Hairline.ttf) format('truetype'); }
+
+/*
+|---------------------------------------------------------------
+| Global styles
+|---------------------------------------------------------------
+|
+| The following styles declared below behave at 1024 > resolution
+| these are then adjusted using media queries further down the
+| document.
+|
+| Only one stylesheet exists to reduce HTTP requests.
+|
+*/
+
+html, body {
+    font-family : HelveticaLight, ProximaRegular, LatoReg, Sans-Serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx--font-smoothing: greyscale;
+    width: 100%;
+}
+
+/*
+|---------------------------------------------------------------
+| Sidebar Styles
+|---------------------------------------------------------------
+|
+| Styles for the sidebar, including the cards
+|
+*/
+
+aside #previousFeed
+{
+    max-width: 400px;
+    width: 100%;
+    float:right;
+    position: absolute;
+}
