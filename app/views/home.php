@@ -19,9 +19,9 @@
     </section>
 
     <aside id="previousFeed">
-        <div class="userCard" ng-repeat="request in requests">
+        <div class="userCard" ng-repeat="request in requests" ng-click="setDisplay(request)">
             <div class="accessory"></div>
-            <div class="textWrap" ng-click="setDisplay(request)">
+            <div class="textWrap">
                 <p>{{request.name}}</p>
                 <p>{{request.dob}}</p>
                 <span class="hidden">{{ request.dateString }}</span>
