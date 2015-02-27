@@ -226,7 +226,7 @@ angular.module("DatePusher", ['ngRoute'])
         $scope.getPosts();
         setTimeout(function() {
             $scope.longPoll();
-        }, (10000));
+        }, (30000));
     };
 
     /*
