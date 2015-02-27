@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS_DIR . "main.css" ?>" />
 
     <!-- Using Angular JS to build this application -->
-    <script type="text/javascript" src="<?php echo LIB_DIR . "angular.min.js" ?>" ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js" ></script>
-    <script type="text/javascript" src="<?php echo LIB_DIR . "controllers.js" ?>" ></script>
+    <script type="text/javascript" src="<?php echo LIB_DIR . "angular.min.js" ?>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script type="text/javascript" src="<?php echo LIB_DIR . "controllers.js" ?>"></script>
 
 </head>
 

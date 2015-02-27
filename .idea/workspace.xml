@@ -25,22 +25,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-36.583332" vertical-offset="367" max-vertical-offset="1395">
-              <caret line="83" column="50" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/components/header.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="450">
               <caret line="24" column="78" selection-start-line="24" selection-start-column="78" selection-end-line="24" selection-end-column="78" />
-              <folding />
+              <folding>
+                <marker date="1425071272000" expanded="true" signature="623:868" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -125,8 +117,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9429658" vertical-offset="3133" max-vertical-offset="4260">
-              <caret line="275" column="22" selection-start-line="275" selection-start-column="22" selection-end-line="275" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.5009506" vertical-offset="3208" max-vertical-offset="4320">
+              <caret line="249" column="24" selection-start-line="249" selection-start-column="24" selection-end-line="249" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -151,7 +143,6 @@
         <option value="$PROJECT_DIR$/app/classes/Database.php" />
         <option value="$PROJECT_DIR$/app/core/commands/Database.php" />
         <option value="$PROJECT_DIR$/app/core/commands/processDate.php" />
-        <option value="$PROJECT_DIR$/app/views/components/header.php" />
         <option value="$PROJECT_DIR$/app/config.php" />
         <option value="$PROJECT_DIR$/app/Database.php" />
         <option value="$PROJECT_DIR$/index.php" />
@@ -159,6 +150,8 @@
         <option value="$PROJECT_DIR$/public/lib/controllers.js" />
         <option value="$PROJECT_DIR$/app/core/commands/deletePost.php" />
         <option value="$PROJECT_DIR$/app/views/home.php" />
+        <option value="$PROJECT_DIR$/public/lib/appLib.js" />
+        <option value="$PROJECT_DIR$/app/views/components/header.php" />
         <option value="$PROJECT_DIR$/public/css/main.css" />
       </list>
     </option>
@@ -526,7 +519,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="450">
           <caret line="24" column="78" selection-start-line="24" selection-start-column="78" selection-end-line="24" selection-end-column="78" />
-          <folding />
+          <folding>
+            <marker date="1425071272000" expanded="true" signature="623:868" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -595,7 +590,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="360">
           <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding />
+          <folding>
+            <marker date="1425071272000" expanded="true" signature="623:868" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -719,14 +716,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/components/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="450">
-          <caret line="24" column="78" selection-start-line="24" selection-start-column="78" selection-end-line="24" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-36.583332" vertical-offset="367" max-vertical-offset="1395">
@@ -798,10 +787,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/components/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="450">
+          <caret line="24" column="78" selection-start-line="24" selection-start-column="78" selection-end-line="24" selection-end-column="78" />
+          <folding>
+            <marker date="1425071272000" expanded="true" signature="623:868" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9429658" vertical-offset="3133" max-vertical-offset="4260">
-          <caret line="275" column="22" selection-start-line="275" selection-start-column="22" selection-end-line="275" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.5009506" vertical-offset="3208" max-vertical-offset="4320">
+          <caret line="249" column="24" selection-start-line="249" selection-start-column="24" selection-end-line="249" selection-end-column="24" />
           <folding />
         </state>
       </provider>
